@@ -26,3 +26,7 @@ const initialCards = [
 ];
 
 console.log("Script conectado correctamente");
+
+initialCards.forEach(function (card) {
+  console.log(card.name);
+});
