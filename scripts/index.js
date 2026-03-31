@@ -25,12 +25,6 @@ const initialCards = [
   },
 ];
 
-console.log("Script conectado correctamente");
-
-initialCards.forEach(function (card) {
-  console.log(card.name);
-});
-
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
 const editProfileCloseButton = editProfileModal.querySelector(".popup__close");
@@ -62,8 +56,21 @@ function handleOpenEditModal() {
   openModal(editProfileModal);
 }
 
-editProfileButton.addEventListener("click", handleOpenEditModal);
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
 
+  profileTitle.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+
+  closeModal(editProfileModal);
+}
+
+editProfileButton.addEventListener("click", handleOpenEditModal);
 editProfileCloseButton.addEventListener("click", function () {
   closeModal(editProfileModal);
+});
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+
+initialCards.forEach(function (card) {
+  console.log(card.name);
 });
