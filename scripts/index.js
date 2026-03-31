@@ -35,6 +35,15 @@ const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
 const editProfileCloseButton = editProfileModal.querySelector(".popup__close");
 
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+
+const editProfileForm = editProfileModal.querySelector(".popup__form");
+const nameInput = editProfileModal.querySelector(".popup__input_type_name");
+const descriptionInput = editProfileModal.querySelector(
+  ".popup__input_type_description",
+);
+
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
 }
@@ -43,9 +52,17 @@ function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
 }
 
-editProfileButton.addEventListener("click", function () {
+function fillProfileForm() {
+  nameInput.value = profileTitle.textContent;
+  descriptionInput.value = profileDescription.textContent;
+}
+
+function handleOpenEditModal() {
+  fillProfileForm();
   openModal(editProfileModal);
-});
+}
+
+editProfileButton.addEventListener("click", handleOpenEditModal);
 
 editProfileCloseButton.addEventListener("click", function () {
   closeModal(editProfileModal);
