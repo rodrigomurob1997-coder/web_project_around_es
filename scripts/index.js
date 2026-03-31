@@ -42,3 +42,11 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
 }
+
+editProfileButton.addEventListener("click", function () {
+  openModal(editProfileModal);
+});
+
+editProfileCloseButton.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
