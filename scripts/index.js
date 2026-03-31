@@ -30,3 +30,15 @@ console.log("Script conectado correctamente");
 initialCards.forEach(function (card) {
   console.log(card.name);
 });
+
+const editProfileButton = document.querySelector(".profile__edit-button");
+const editProfileModal = document.querySelector("#edit-popup");
+const editProfileCloseButton = editProfileModal.querySelector(".popup__close");
+
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("popup_is-opened");
+}
