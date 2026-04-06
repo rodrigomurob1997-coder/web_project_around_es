@@ -26,7 +26,7 @@ It is part of Sprint 6 of the Web Development program.
 
 ## Live Project
 
-You can view the project here:
+You can view the project here: https://rodrigomurob1997-coder.github.io/web_project_around_es/
 
 ## Project Structure
 
