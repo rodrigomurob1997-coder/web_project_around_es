@@ -84,10 +84,20 @@ function getCardElement(
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   cardTitle.textContent = name;
   cardImage.src = link;
   cardImage.alt = name;
+
+  likeButton.addEventListener("click", function () {
+    likeButton.classList.toggle("card__like-button_is-active");
+  });
+
+  deleteButton.addEventListener("click", function () {
+    cardElement.remove();
+  });
 
   return cardElement;
 }
