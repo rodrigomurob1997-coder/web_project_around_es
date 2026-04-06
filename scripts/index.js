@@ -44,6 +44,11 @@ const cardTemplate = document.querySelector("#card-template").content;
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#new-card-popup");
 const addCardCloseButton = addCardModal.querySelector(".popup__close");
+const addCardForm = addCardModal.querySelector(".popup__form");
+const cardNameInput = addCardModal.querySelector(
+  ".popup__input_type_card-name",
+);
+const cardLinkInput = addCardModal.querySelector(".popup__input_type_url");
 
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
@@ -92,6 +97,18 @@ function renderCard(name, link, container) {
   container.prepend(cardElement);
 }
 
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const name = cardNameInput.value;
+  const link = cardLinkInput.value;
+
+  renderCard(name, link, cardsList);
+
+  closeModal(addCardModal);
+  addCardForm.reset();
+}
+
 editProfileButton.addEventListener("click", handleOpenEditModal);
 editProfileCloseButton.addEventListener("click", function () {
   closeModal(editProfileModal);
@@ -105,6 +122,7 @@ addCardButton.addEventListener("click", function () {
 addCardCloseButton.addEventListener("click", function () {
   closeModal(addCardModal);
 });
+addCardForm.addEventListener("submit", handleCardFormSubmit);
 
 initialCards
   .slice()
