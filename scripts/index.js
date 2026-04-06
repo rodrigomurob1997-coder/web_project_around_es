@@ -50,6 +50,11 @@ const cardNameInput = addCardModal.querySelector(
 );
 const cardLinkInput = addCardModal.querySelector(".popup__input_type_url");
 
+const imageModal = document.querySelector("#image-popup");
+const imageModalImage = imageModal.querySelector(".popup__image");
+const imageModalCaption = imageModal.querySelector(".popup__caption");
+const imageModalCloseButton = imageModal.querySelector(".popup__close");
+
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
 }
@@ -90,6 +95,14 @@ function getCardElement(
   cardTitle.textContent = name;
   cardImage.src = link;
   cardImage.alt = name;
+
+  cardImage.addEventListener("click", function () {
+    imageModalImage.src = link;
+    imageModalImage.alt = name;
+    imageModalCaption.textContent = name;
+
+    openModal(imageModal);
+  });
 
   likeButton.addEventListener("click", function () {
     likeButton.classList.toggle("card__like-button_is-active");
@@ -133,6 +146,10 @@ addCardCloseButton.addEventListener("click", function () {
   closeModal(addCardModal);
 });
 addCardForm.addEventListener("submit", handleCardFormSubmit);
+
+imageModalCloseButton.addEventListener("click", function () {
+  closeModal(imageModal);
+});
 
 initialCards
   .slice()
