@@ -38,6 +38,9 @@ const descriptionInput = editProfileModal.querySelector(
   ".popup__input_type_description",
 );
 
+const cardsList = document.querySelector(".cards__list");
+const cardTemplate = document.querySelector("#card-template").content;
+
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
 }
@@ -65,12 +68,35 @@ function handleProfileFormSubmit(evt) {
   closeModal(editProfileModal);
 }
 
+function getCardElement(
+  name = "Sin título",
+  link = "./images/placeholder.jpg",
+) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".card__image");
+
+  cardTitle.textContent = name;
+  cardImage.src = link;
+  cardImage.alt = name;
+
+  return cardElement;
+}
+
+function renderCard(name, link, container) {
+  const cardElement = getCardElement(name, link);
+  container.prepend(cardElement);
+}
+
 editProfileButton.addEventListener("click", handleOpenEditModal);
 editProfileCloseButton.addEventListener("click", function () {
   closeModal(editProfileModal);
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
-initialCards.forEach(function (card) {
-  console.log(card.name);
-});
+initialCards
+  .slice()
+  .reverse()
+  .forEach(function (card) {
+    renderCard(card.name, card.link, cardsList);
+  });
