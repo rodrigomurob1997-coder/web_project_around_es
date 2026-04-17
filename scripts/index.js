@@ -73,6 +73,12 @@ function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
 }
 
+function handleOverlayClose(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
 function fillProfileForm() {
   nameInput.value = profileTitle.textContent;
   descriptionInput.value = profileDescription.textContent;
@@ -164,6 +170,10 @@ addCardForm.addEventListener("submit", handleCardFormSubmit);
 imageModalCloseButton.addEventListener("click", function () {
   closeModal(imageModal);
 });
+
+editProfileModal.addEventListener("click", handleOverlayClose);
+addCardModal.addEventListener("click", handleOverlayClose);
+imageModal.addEventListener("click", handleOverlayClose);
 
 setEventListeners(editProfileForm, validationConfig);
 setEventListeners(addCardForm, validationConfig);
