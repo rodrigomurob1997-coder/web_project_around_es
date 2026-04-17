@@ -1,3 +1,5 @@
+import { setEventListeners, resetValidation } from "./validate.js";
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -24,6 +26,14 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
+
+const validationConfig = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
@@ -70,7 +80,14 @@ function fillProfileForm() {
 
 function handleOpenEditModal() {
   fillProfileForm();
+  resetValidation(editProfileForm, validationConfig);
   openModal(editProfileModal);
+}
+
+function handleOpenAddCardModal() {
+  addCardForm.reset();
+  resetValidation(addCardForm, validationConfig);
+  openModal(addCardModal);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -138,10 +155,7 @@ editProfileCloseButton.addEventListener("click", function () {
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
-addCardButton.addEventListener("click", function () {
-  openModal(addCardModal);
-});
-
+addCardButton.addEventListener("click", handleOpenAddCardModal);
 addCardCloseButton.addEventListener("click", function () {
   closeModal(addCardModal);
 });
@@ -150,6 +164,9 @@ addCardForm.addEventListener("submit", handleCardFormSubmit);
 imageModalCloseButton.addEventListener("click", function () {
   closeModal(imageModal);
 });
+
+setEventListeners(editProfileForm, validationConfig);
+setEventListeners(addCardForm, validationConfig);
 
 initialCards
   .slice()
