@@ -1,4 +1,4 @@
-import { FormConfig } from "../utils/constants";
+import { FormConfig } from "../utils/constants.js";
 
 export class FormValidator {
   private _config: FormConfig;
@@ -17,7 +17,10 @@ export class FormValidator {
     ) as HTMLButtonElement;
   }
 
-  private _showInputError(inputElement: HTMLInputElement, errorMessage: string): void {
+  private _showInputError(
+    inputElement: HTMLInputElement,
+    errorMessage: string
+  ): void {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     ) as HTMLElement;
