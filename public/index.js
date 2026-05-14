@@ -2,6 +2,7 @@ import { FormValidator } from "./components/FormValidator.js";
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
 import { UserInfo } from "./components/UserInfo.js";
+import { PopupWithImage } from "./components/PopupWithImage.js";
 import { defaultFormConfig, initialCards } from "./utils/constants.js";
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
@@ -16,9 +17,6 @@ const addCardForm = addCardModal.querySelector(".popup__form");
 const cardNameInput = addCardModal.querySelector(".popup__input_type_card-name");
 const cardLinkInput = addCardModal.querySelector(".popup__input_type_url");
 const imageModal = document.querySelector("#image-popup");
-const imageModalImage = imageModal.querySelector(".popup__image");
-const imageModalCaption = imageModal.querySelector(".popup__caption");
-const imageModalCloseButton = imageModal.querySelector(".popup__close");
 const editProfileFormValidator = new FormValidator(defaultFormConfig, editProfileForm);
 const addCardFormValidator = new FormValidator(defaultFormConfig, addCardForm);
 const cardSection = new Section({
@@ -31,6 +29,7 @@ const userInfo = new UserInfo({
     nameSelector: ".profile__title",
     descriptionSelector: ".profile__description",
 });
+const imagePopup = new PopupWithImage("#image-popup");
 function openModal(modal) {
     modal.classList.add("popup_is-opened");
     document.addEventListener("keydown", handleEscClose);
@@ -56,10 +55,7 @@ function fillProfileForm() {
     descriptionInput.value = profileData.description;
 }
 function handleCardClick(name, link) {
-    imageModalImage.src = link;
-    imageModalImage.alt = name;
-    imageModalCaption.textContent = name;
-    openModal(imageModal);
+    imagePopup.open(name, link);
 }
 function handleOpenEditModal() {
     fillProfileForm();
@@ -107,12 +103,9 @@ addCardCloseButton.addEventListener("click", function () {
     closeModal(addCardModal);
 });
 addCardForm.addEventListener("submit", handleCardFormSubmit);
-imageModalCloseButton.addEventListener("click", function () {
-    closeModal(imageModal);
-});
 editProfileModal.addEventListener("click", handleOverlayClose);
 addCardModal.addEventListener("click", handleOverlayClose);
-imageModal.addEventListener("click", handleOverlayClose);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+imagePopup.setEventListeners();
 cardSection.renderItems();
