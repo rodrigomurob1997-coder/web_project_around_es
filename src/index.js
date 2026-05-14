@@ -1,5 +1,6 @@
 import { FormValidator } from "./components/FormValidator.js";
 import { Card } from "./components/Card.js";
+import { Section } from "./components/Section.js";
 import { defaultFormConfig, initialCards } from "./utils/constants.js";
 
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -14,8 +15,6 @@ const nameInput = editProfileModal.querySelector(".popup__input_type_name");
 const descriptionInput = editProfileModal.querySelector(
   ".popup__input_type_description",
 );
-
-const cardsList = document.querySelector(".cards__list");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#new-card-popup");
@@ -37,6 +36,16 @@ const editProfileFormValidator = new FormValidator(
 );
 
 const addCardFormValidator = new FormValidator(defaultFormConfig, addCardForm);
+
+const cardSection = new Section(
+  {
+    items: initialCards.slice().reverse(),
+    renderer: (card) => {
+      renderCard(card);
+    },
+  },
+  ".cards__list",
+);
 
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
@@ -100,9 +109,9 @@ function createCard(data) {
   return card.generateCard();
 }
 
-function renderCard(data, container) {
+function renderCard(data) {
   const cardElement = createCard(data);
-  container.prepend(cardElement);
+  cardSection.addItem(cardElement);
 }
 
 function handleCardFormSubmit(evt) {
@@ -113,7 +122,7 @@ function handleCardFormSubmit(evt) {
     link: cardLinkInput.value,
   };
 
-  renderCard(cardData, cardsList);
+  renderCard(cardData);
 
   closeModal(addCardModal);
   addCardForm.reset();
@@ -142,9 +151,4 @@ imageModal.addEventListener("click", handleOverlayClose);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-initialCards
-  .slice()
-  .reverse()
-  .forEach(function (card) {
-    renderCard(card, cardsList);
-  });
+cardSection.renderItems();
