@@ -18,10 +18,6 @@ const descriptionInput = editProfileModal.querySelector(
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#new-card-popup");
 const addCardForm = addCardModal.querySelector(".popup__form");
-const cardNameInput = addCardModal.querySelector(
-  ".popup__input_type_card-name",
-);
-const cardLinkInput = addCardModal.querySelector(".popup__input_type_url");
 
 const editProfileFormValidator = new FormValidator(
   defaultFormConfig,
