@@ -1,14 +1,12 @@
 import { FormValidator } from "./components/FormValidator.js";
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
+import { UserInfo } from "./components/UserInfo.js";
 import { defaultFormConfig, initialCards } from "./utils/constants.js";
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
 const editProfileCloseButton = editProfileModal.querySelector(".popup__close");
-
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
 
 const editProfileForm = editProfileModal.querySelector(".popup__form");
 const nameInput = editProfileModal.querySelector(".popup__input_type_name");
@@ -47,6 +45,11 @@ const cardSection = new Section(
   ".cards__list",
 );
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  descriptionSelector: ".profile__description",
+});
+
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
   document.addEventListener("keydown", handleEscClose);
@@ -71,8 +74,10 @@ function handleEscClose(evt) {
 }
 
 function fillProfileForm() {
-  nameInput.value = profileTitle.textContent;
-  descriptionInput.value = profileDescription.textContent;
+  const profileData = userInfo.getUserInfo();
+
+  nameInput.value = profileData.name;
+  descriptionInput.value = profileData.description;
 }
 
 function handleCardClick(name, link) {
@@ -98,8 +103,10 @@ function handleOpenAddCardModal() {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  profileTitle.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
+  userInfo.setUserInfo({
+    name: nameInput.value,
+    description: descriptionInput.value,
+  });
 
   closeModal(editProfileModal);
 }
