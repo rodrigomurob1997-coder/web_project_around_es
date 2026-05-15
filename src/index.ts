@@ -1,10 +1,10 @@
-import { FormValidator } from "./components/FormValidator.js";
-import { Card, CardData } from "./components/Card.js";
-import { Section } from "./components/Section.js";
-import { UserInfo } from "./components/UserInfo.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { defaultFormConfig, initialCards } from "./utils/constants.js";
+import { FormValidator } from "./components/FormValidator.ts";
+import { Card, CardData } from "./components/Card.ts";
+import { Section } from "./components/Section.ts";
+import { UserInfo } from "./components/UserInfo.ts";
+import { PopupWithImage } from "./components/PopupWithImage.ts";
+import { PopupWithForm } from "./components/PopupWithForm.ts";
+import { defaultFormConfig, initialCards } from "./utils/constants.ts";
 
 const editProfileButton = document.querySelector(
   ".profile__edit-button"

@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js";
+import { Popup } from "./Popup.ts";
 
 export class PopupWithImage extends Popup {
   private _imageElement: HTMLImageElement;

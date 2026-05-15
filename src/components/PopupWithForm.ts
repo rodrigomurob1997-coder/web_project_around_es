@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js";
+import { Popup } from "./Popup.ts";
 
 export type FormSubmitHandler = (inputValues: Record<string, string>) => void;
 
