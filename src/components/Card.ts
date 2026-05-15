@@ -1,9 +1,9 @@
-export interface CardData {
+interface CardData {
   name: string;
   link: string;
 }
 
-export class Card {
+class Card {
   private _name: string;
   private _link: string;
   private _templateSelector: string;
@@ -67,7 +67,9 @@ export class Card {
   public generateCard(): HTMLElement {
     const cardElement = this._getTemplate();
     const cardTitle = cardElement.querySelector(".card__title") as HTMLElement;
-    const cardImage = cardElement.querySelector(".card__image") as HTMLImageElement;
+    const cardImage = cardElement.querySelector(
+      ".card__image"
+    ) as HTMLImageElement;
 
     cardTitle.textContent = this._name;
     cardImage.src = this._link;

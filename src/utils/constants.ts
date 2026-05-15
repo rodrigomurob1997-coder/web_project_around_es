@@ -1,4 +1,4 @@
-export interface FormConfig {
+interface FormConfig {
   inputSelector: string;
   submitButtonSelector: string;
   inactiveButtonClass: string;
@@ -6,7 +6,7 @@ export interface FormConfig {
   errorClass: string;
 }
 
-export const defaultFormConfig: FormConfig = {
+const defaultFormConfig: FormConfig = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
@@ -14,7 +14,7 @@ export const defaultFormConfig: FormConfig = {
   errorClass: "popup__error_visible",
 };
 
-export const initialCards = [
+const initialCards = [
   {
     name: "Valle de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",

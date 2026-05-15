@@ -1,14 +1,17 @@
-export interface SectionRenderer<T> {
+interface SectionRenderer<T> {
   items: T[];
   renderer: (item: T) => void;
 }
 
-export class Section<T> {
+class Section<T> {
   private _items: T[];
   private _renderer: (item: T) => void;
   private _container: HTMLElement;
 
-  constructor({ items, renderer }: SectionRenderer<T>, containerSelector: string) {
+  constructor(
+    { items, renderer }: SectionRenderer<T>,
+    containerSelector: string
+  ) {
     this._items = items;
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector) as HTMLElement;

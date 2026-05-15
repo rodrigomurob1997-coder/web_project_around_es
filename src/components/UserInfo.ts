@@ -1,4 +1,4 @@
-export interface UserData {
+interface UserData {
   name: string;
   description: string;
 }
@@ -8,7 +8,7 @@ interface UserInfoSelectors {
   descriptionSelector: string;
 }
 
-export class UserInfo {
+class UserInfo {
   private _nameElement: HTMLElement;
   private _descriptionElement: HTMLElement;
 

@@ -1,4 +1,4 @@
-export class Popup {
+class Popup {
   protected _popupElement: HTMLElement;
 
   constructor(popupSelector: string) {

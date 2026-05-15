@@ -1,6 +1,4 @@
-import { FormConfig } from "../utils/constants.ts";
-
-export class FormValidator {
+class FormValidator {
   private _config: FormConfig;
   private _formElement: HTMLFormElement;
   private _inputList: HTMLInputElement[];

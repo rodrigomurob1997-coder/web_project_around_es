@@ -1,8 +1,6 @@
-import { Popup } from "./Popup.ts";
+type FormSubmitHandler = (inputValues: Record<string, string>) => void;
 
-export type FormSubmitHandler = (inputValues: Record<string, string>) => void;
-
-export class PopupWithForm extends Popup {
+class PopupWithForm extends Popup {
   private _formElement: HTMLFormElement;
   private _inputList: HTMLInputElement[];
   private _handleFormSubmit: FormSubmitHandler;
